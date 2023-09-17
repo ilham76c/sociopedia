@@ -69,7 +69,7 @@ export const likePost = async (req, res) => {
         );
 
         res.status(200).json(updatePost);
-    } catch (error) {
+    } catch (err) {
         res.status(404).json({ msg: err.message });
     }
 };

@@ -18,13 +18,12 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPost } from 'state';
 
-const likes = {
-    'userid1': true,
-    'userid2': true
-};
+// const likes = {
+//     'userid1': true,
+//     'userid2': true
+// };
 
 const PostWidget = ({
-    key,
     postId,
     postUserId,
     name,
@@ -35,7 +34,7 @@ const PostWidget = ({
     likes,
     comments
 }) => {
-    const { isComments, setComments } = useState(false);
+    const [isComments, setComments] = useState(false);
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
@@ -48,6 +47,7 @@ const PostWidget = ({
 
     const patchLike = async () => {
         const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+            method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -98,7 +98,7 @@ const PostWidget = ({
                         <IconButton onClick={() => setComments(!isComments)}>
                             <ChatBubbleOutlineOutlined />
                         </IconButton>                    
-                        <Typography>{comments.length}</Typography>    
+                        <Typography>{comments ? comments.length : ''}</Typography>    
                     </FlexBetween>
 
                 </FlexBetween>

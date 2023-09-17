@@ -56,7 +56,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
                     <Typography
                         color={main}
                         variant='h5'
-                        fontWeigth='500'
+                        fontWeight='500'
                         sx={{
                             '&:hover': {
                                 color: palette.primary.light,
